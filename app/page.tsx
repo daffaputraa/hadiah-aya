@@ -15,28 +15,25 @@ export default function Home() {
     "“Siapp?”",
   ];
 
-  useEffect(() => {
-    let interval: NodeJS.Timeout;
+    useEffect(() => {
+      const interval = setInterval(() => {
+        setTextIndex((prev) => {
+          if (prev < texts.length - 1) {
+            return prev + 1;
+          } else {
+            clearInterval(interval);
+            setTimeout(() => {
+              router.push("/confetti");
+            }, 2000);
+            return prev;
+          }
+        });
+      }, 3000);
+    
+      return () => clearInterval(interval);
+    }, [router, texts.length]);
+    
 
-    // Ganti teks setiap 3 detik
-    interval = setInterval(() => {
-      setTextIndex((prev) => {
-        if (prev < texts.length - 1) {
-          return prev + 1;
-        } else {
-          // Kalau sudah sampai teks terakhir, berhenti interval
-          clearInterval(interval);
-          // Tunggu sedikit sebelum redirect biar teks terakhir kebaca
-          setTimeout(() => {
-            router.push("/confetti");
-          }, 2000); // kasih jeda 2 detik setelah teks terakhir
-          return prev;
-        }
-      });
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, [router]);
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">
