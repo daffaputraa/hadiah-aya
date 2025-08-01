@@ -2,11 +2,12 @@
 
 import React, { useState, useRef } from 'react';
 import { Heart, Gift, Sparkles } from 'lucide-react';
+import Link from 'next/link';
 
 const BirthdayLetterWebsite = () => {
   const [isEnvelopeOpen, setIsEnvelopeOpen] = useState(false);
   const [showCard, setShowCard] = useState(false);
-  const audioRef = useRef(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const handleEnvelopeClick = () => {
     if (!isEnvelopeOpen) {
@@ -172,6 +173,10 @@ const BirthdayLetterWebsite = () => {
                   <p className='text-left'>Kalau kamu bisa jadi Sore, terus ketemu diri kamu di masa-masa sulit, kayanya mereka bakalan bangga deh liat kamu yang sekarang. Bangga karena sudah being strong enough to make it throught it.</p>
                   <p className='text-left'>Harapan aku cuman 2, i wish you happy and healthy, always. Keep that damn cute smile and dimple in ur face forever ya.</p>
                   <p className='text-left italic'>- Dari Appa, pacar sekaligus yang jagain Aya sekarang ❤️</p>
+
+                  <Link href="/gallery">
+                    Liatt galleri
+                  </Link>
                 </div>
 
                 <div className="flex justify-center">
